@@ -48,6 +48,7 @@ const iconMenu = document.querySelector('.menu__icon');
 const menuBody = document.querySelector('.menu__body');
 if (iconMenu) {
 	iconMenu.addEventListener('click', function (e) {
+		
 		document.body.classList.toggle('_lock');
 		iconMenu.classList.toggle('_active');
 		menuBody.classList.toggle('_active');
@@ -97,4 +98,23 @@ if (menuLinks.length > 0) {
 			e.preventDefault();
 		}
 	}
+}
+
+function showHideMenu()
+{
+	document.body.classList.toggle('_lock');
+		iconMenu.classList.toggle('_active');
+		menuBody.classList.toggle('_active');
+}
+
+function selectOption(number)
+{
+	console.log("selected: "+number);
+	selectPageToShow(number);
+	showHideMenu();
+}
+
+function selectPageToShow(option)
+{
+	var gastro_div = document.getElementById("Gastro");
 }
