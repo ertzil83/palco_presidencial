@@ -170,6 +170,9 @@ function loadMatchInfoOnline()
 		away_lineup=match_info.record.away_team_lineup;
 		home_sustitutions=match_info.record.home_team_substitution;
 		away_sustitutions=match_info.record.away_team_substitution;
+		substitutions=match_info.record.substitutions;
+		home_subs=match_info.record.home_subs;
+		away_subs=match_info.record.away_subs;
 		if(is_data)
 		{
 			updateMatchInfo();
@@ -310,13 +313,68 @@ function updateMatchInfo()
 	document.getElementById("away_sust_name11").textContent = away_sustitutions[10].name;
 	document.getElementById("away_sust_number12").textContent = away_sustitutions[11].dorsal;
 	document.getElementById("away_sust_name12").textContent = away_sustitutions[11].name;
+	//CheckSubstitutions
+	if(substitutions)
+		loadSubstitutionsInfo();
 
+
+}
+function loadSubstitutionsInfo()
+{
+	
+	document.getElementById("sus_Info_Div").style.display = "block";
+	document.getElementById("sus_Info_Div").style.visibility= "visible";
+	document.getElementById("sus_Bot_Sep").style.display = "block";
+	document.getElementById("sus_Bot_Sep").style.visibility= "visible";
+	document.getElementById("sus_Play_Div").style.display = "block";
+	document.getElementById("sus_Play_Div").style.visibility= "visible";
+	if(home_subs.length>0)
+		populateSubs("home_sub_list",home_subs);
+	if (away_subs.length>0)
+		populateSubs("away_sub_list",away_subs);
+
+}
+function populateSubs(html_item,list)
+{
+	var html="";
+	for(var i=0; i<list.length;i++)
+	{
+		html="";
+		var elem=list[i];
+		html="<div class='player_div'>"+
+				"<div class='sub_minute_div'>"+
+					"<span class='number_span'>"+elem.minute+"</span>"+
+				"</div>"+
+				"<div class='sub_info_div'>"+
+					"<div>"+
+						"<div class='number_sub_div'>"+
+							"<span class='number_span'>"+ elem.player1nu+"</span>"+
+					"</div>"+
+					"<div class='name_sub_div'>"+
+						"<span class='name_span' >"+elem.player1na+"</span>"+
+					"</div>"+
+				"</div>"+
+				"<div>"+
+				"<div class='number_sub_div'>"+
+					"<span class='number_span'>"+elem.player2nu+"</span>"+
+				"</div>"+
+				"<div class='name_sub_div'>"+
+					"<span class='name_span'>"+elem.player2na+"</span>"+
+				"</div>"+
+			"</div>"+
+		"</div>"+
+		"</div>";
+		document.getElementById(html_item).innerHTML += html;
+	}
 }
 
 var match_info;
 var result;
 var home_lineup;
 var home_sustitutions;
+var home_subs=[];
 var away_lineup;
 var away_sustitutions;
+var away_subs=[];
 var is_data;
+var substitutions;

@@ -267,7 +267,7 @@ body._touch .menu__list > li._active .menu__arrow {
 }
 .stast_separator
 {
-	height:1.5px;
+	height:2.5px;
 	border-width:0;
 	color: #9e804d;
 	margin-left: 30px;
@@ -401,9 +401,12 @@ body._touch .menu__list > li._active .menu__arrow {
 }
 .subitute_title
 {
-	
+	display: grid;
+    place-items: center;
+	height: 35px;
 	color: #9e804d ;
 	text-transform: uppercase;
+	font-weight: bold;
 }
 .substitutes_info_div
 {
@@ -438,14 +441,58 @@ body._touch .menu__list > li._active .menu__arrow {
 	border: 2px solid #9e804d;
 }
 
-#loading_div
+#loading_div,#sus_Info_Div,#sus_Bot_Sep,#sus_Play_Div
 {
 	display: none;
 	visibility: hidden;
 }
+#sus_Info_Div,#sup_Info_Div
+{
+	margin-top: 10px;
+}
 
+.sub_minute_div
+{
+	
+	width: 15%;
+	float: left;
+	height: 70px;
+	display: grid;
+    place-items: center;
+}
+.sub_info_div
+{
+	
+	width: 85%;
+	float: right;
+	height: 70px;
+}
+.number_sub_div
+{
+	width: 15%;
+	float:left;
+	height: 35px;
+	display: grid;
+    place-items: center;
+	
+}
 
-
+.name_sub_div
+{
+	width: 85%;
+	float:right;
+	height: 35px;
+	display:table;
+	
+}
+.sub_separator{
+	height:0.5px;
+	border-width:0;
+	color: #9e804d;
+	margin-right: 30px;
+	background-color: #9e804d;
+	width: 80%;
+}
 
 
 
