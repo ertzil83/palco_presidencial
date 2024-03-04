@@ -128,18 +128,18 @@ function selectPageToShow(option)
 			gastro_div.style.visibility= "hidden";
 			match_div.style.display = "block";
 			match_div.style.visibility= "visible";
-			match_footer.style.display = "block";
-			match_footer.style.visibility= "visible";
+			/*match_footer.style.display = "block";
+			match_footer.style.visibility= "visible";*/
 			break;
 		case 2: 
 			sub_header.textContent="Gastronomía";
 			match_div.style.display = "none";
 			match_div.style.visibility= "hidden";
-			match_footer.style.display = "none";
-			match_footer.style.visibility= "hidden";
+			/*match_footer.style.display = "none";
+			match_footer.style.visibility= "hidden";*/
 			gastro_div.style.display = "block";
 			gastro_div.style.visibility= "visible";
 			break;
 	}
 }
-var match_footer=document.getElementById("match_footer");
+//var match_footer=document.getElementById("match_footer");
