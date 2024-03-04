@@ -26,35 +26,35 @@
 						<nav data-sub_menu_auto_close="true" class="menu__body">
 							<ul class="menu__list">
 								<li>
-									<a onclick="selectOption(1)"  class="menu__link"
+									<a onclick="selectOption(1)" id="menu_match"  class="menu__link"
 										>Partido</a
 									>
 								</li>
 								<li>
-									<a onclick="selectOption(2)" class="menu__link"
+									<a onclick="selectOption(2)" id="menu_gastro" class="menu__link"
 										>Gastronomía</a
 									>
 								</li>
 								<li>
-									<a href="" class="menu__link">Idiomas</a>
+									<a href="" class="menu__link" id="menu_idioma">Idiomas</a>
 									<span class="menu__arrow"></span>
 									<ul class="menu__sub-list">
 										<li>
-											<a href="" class="menu__sub-link">Euskera</a>
+											<a onclick="transEus()" class="menu__sub-link">Euskera</a>
 										</li>
 										<li>
-											<a href="" class="menu__sub-link">Castellano</a>
+											<a onclick="transCas()" class="menu__sub-link">Castellano</a>
 										</li>
 										
 									</ul>
 								</li>
 								<li>
-									<a  href="https://hospitality.realsociedad.eus/es/h" target="_blank" class="menu__link"
+									<a  href="https://hospitality.realsociedad.eus/es/h" id="menu_info" target="_blank" class="menu__link"
 										>Más información</a
 									>
 								</li>
 								<li>
-									<a  href="mailto: hospitality@realsociedad.eus" class="menu__link"
+									<a  href="mailto: hospitality@realsociedad.eus" id="menu_contact" class="menu__link"
 										>Contacto</a
 									>
 								</li>
@@ -75,39 +75,43 @@
 					</div>
 					<hr class="separator" >
 					<div class="meal_div">
-						<span class="meal_item">Mini de lomo</span>
+						<span class="meal_item" id="meal1">Mini de lomo</span>
 					</div>
 					<hr class="separator" >
 					<div class="meal_div">
-						<span class="meal_item">Pintxo de tortilla de patata</span>
+						<span class="meal_item" id="meal2">Pintxo de tortilla de patata</span>
 					</div>
 					<hr class="separator" >
 					<div class="meal_div">
-						<span class="meal_item">Croqueta de jamón</span>
+						<span class="meal_item" id="meal3">Croqueta de jamón</span>
 					</div>
 					<hr class="separator" >
 					<div class="meal_div">
-						<span class="meal_item">Crujiente de calamar</span>
+						<span class="meal_item" id="meal4">Crujiente de calamar</span>
 					</div>
 					<hr class="separator" >
 					<div class="meal_div">
-						<span class="meal_item">Terrina de puerro con jugo de carne<br /> y fideos fritos</span>
+						<span class="meal_item" id="meal5">Terrina de puerro con jugo de carne<br /> y fideos fritos</span>
 					</div>
 					<hr class="separator" >
 					<div class="meal_div">
-						<span class="meal_item">Pasta bolognesa con queso</span>
+						<span class="meal_item" id="meal6">Ensalada campera lumagorri</span>
 					</div>
 					<hr class="separator" >
 					<div class="meal_div">
-						<span class="meal_item">Arroz basmati con vinagreta<br /> suave de mostaza y pimiento asado</span>
+						<span class="meal_item" id="meal7">Pasta bolognesa con queso</span>
 					</div>
 					<hr class="separator" >
 					<div class="meal_div">
-						<span class="meal_item">Merluza rebozada con piquillo</span>
+						<span class="meal_item" id="meal8">Arroz basmati con vinagreta<br /> suave de mostaza y pimiento asado</span>
 					</div>
 					<hr class="separator" >
 					<div class="meal_div">
-						<span class="meal_item">Txuleta</span>
+						<span class="meal_item" id="meal9">Merluza rebozada con piquillo</span>
+					</div>
+					<hr class="separator" >
+					<div class="meal_div">
+						<span class="meal_item" id="meal10">Txuleta</span>
 					</div>
 					<hr class="separator" >
 					<div class="img_div">
@@ -115,15 +119,15 @@
 					</div>
 					<hr class="separator" >
 					<div class="meal_div">
-						<span class="meal_item">Pastelitos variados</span>
+						<span class="meal_item" id="meal11">Pastelitos variados</span>
 					</div>
 					<hr class="separator" >
 					<div class="meal_div">
-						<span class="meal_item">Tarta de queso</span>
+						<span class="meal_item" id="meal12">Tarta de queso</span>
 					</div>
 					<hr class="separator" >
 					<div class="meal_div">
-						<span class="meal_item">Quesos variados</span>
+						<span class="meal_item" id="meal13">Quesos variados</span>
 					</div>
 					<hr class="separator" >
 				</div>
@@ -319,7 +323,7 @@
 					</div>
 					
 					<div class="substitutes_title_div " id="sus_Info_Div">
-						<span class="subitute_title">SUSTITUCIONES</span>
+						<span class="subitute_title" id="subitute_title">SUSTITUCIONES</span>
 
 					</div>
 					<hr class="stast_separator " id="sus_Bot_Sep"/>
@@ -338,7 +342,7 @@
 					
 					
 					<div class="substitutes_title_div subst_class" id="sup_Info_Div">
-						<span class="subitute_title">SUPLENTES</span>
+						<span class="subitute_title" id="sub_title">SUPLENTES</span>
 
 					</div>
 					<hr class="stast_separator subst_class" >
@@ -544,9 +548,9 @@
 				</div>
 				<div class="section_body" id="no_info_div">
 					<div class="not_info_content">
-						<span class="no_info_text">La información no está disponible todavía.</span></br>
-						<span class="no_info_text">Por favor, inténtelo más tarde.</span>
-						<button class="refresh_button" onclick="refreshInfo()" type="button">Actualizar</button>
+						<span class="no_info_text" id="no_info_text1">La información no está disponible todavía.</span></br>
+						<span class="no_info_text" id="no_info_text2">Por favor, inténtelo más tarde.</span>
+						<button class="refresh_button" id="refresh_button" onclick="refreshInfo()" type="button">Actualizar</button>
 
 					</div>
 				</div>

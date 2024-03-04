@@ -368,6 +368,72 @@ function populateSubs(html_item,list)
 	}
 }
 
+function transEus()
+{
+	document.getElementById("menu_match").innerHTML="Partidua";
+	match_title="Partidua";
+	document.getElementById("menu_gastro").innerHTML="Gastronomia";
+	gastro_title="Gastronomia"
+	document.getElementById("menu_idioma").innerHTML="Hizkuntza";
+	document.getElementById("menu_info").innerHTML="Informazioa";
+	document.getElementById("menu_contact").innerHTML="Kontaktua";
+	document.getElementById("meal1").textContent="Solomo minia";
+	document.getElementById("meal2").textContent="Patata-tortilaren pintxoa";
+	document.getElementById("meal3").textContent="Urdaiazpiko kroketa";
+	document.getElementById("meal4").textContent="Txibia kurruskaria";
+	document.getElementById("meal5").textContent="Porru terrina, haragi zuku eta fideo frijituekin";
+	document.getElementById("meal6").textContent="Lumagorri landako entsalada";
+	document.getElementById("meal7").textContent="Pasta boloniarra gaztarekin";
+	document.getElementById("meal8").textContent="Basmati arroza ziapezko ozpin-olio leun eta piper errearekin";
+	document.getElementById("meal9").textContent="Legatza arrautzaztatuta pikilloarekin";
+	document.getElementById("meal10").textContent="Txuleta";
+	document.getElementById("meal11").textContent="Askotariko pasteltxoak";
+	document.getElementById("meal12").textContent="Gazta tarta";
+	document.getElementById("meal13").textContent="Askotariko gaztak";
+	document.getElementById("subitute_title").textContent="Aldaketak";
+	document.getElementById("sub_title").textContent="Ordezkoak";
+	document.getElementById("no_info_text1").textContent="Informazioa oraindik ez dago eskuragarri.";
+	document.getElementById("no_info_text2").textContent="Mesedez, saiatu beranduago.";
+	document.getElementById("meal13").textContent="Eguneratu";
+	
+	showHideMenu();
+}
+
+function transCas()
+{
+	document.getElementById("menu_match").innerHTML="Partido";
+	match_title="Partido";
+	document.getElementById("menu_gastro").innerHTML="Gastronomía";
+	gastro_title="Gastronomía"
+	document.getElementById("menu_idioma").innerHTML="Idioma";
+	document.getElementById("menu_info").innerHTML="Información";
+	document.getElementById("menu_contact").innerHTML="Contacto";
+	document.getElementById("meal1").textContent="Mini de lomo";
+	document.getElementById("meal2").textContent="Pintxo de tortilla de patata";
+	document.getElementById("meal3").textContent="Croqueta de jamón";
+	document.getElementById("meal4").textContent="Crujiente de calamar";
+	document.getElementById("meal5").textContent="Terrina de puerro con jugo de carne y fideos fritos";
+	document.getElementById("meal6").textContent="Ensalada campera lumagorri";
+	document.getElementById("meal7").textContent="Pasta bolognesa con queso";
+	document.getElementById("meal8").textContent="Arroz basmati con vinagreta suave de mostaza y pimiento asado";
+	document.getElementById("meal9").textContent="Merluza rebozada con piquillo";
+	document.getElementById("meal10").textContent="Txuleta";
+	document.getElementById("meal11").textContent="Pastelitos variados";
+	document.getElementById("meal12").textContent="Tarta de queso";
+	document.getElementById("meal13").textContent="Quesos variados";
+	document.getElementById("subitute_title").textContent="Sustituciones";
+	document.getElementById("sub_title").textContent="Suplentes";
+	document.getElementById("no_info_text1").textContent="La información no está disponible todavía.";
+	document.getElementById("no_info_text2").textContent="Por favor, inténtelo más tarde.";
+	document.getElementById("meal13").textContent="Actualizar";
+	
+	showHideMenu();
+}
+
+
+
+var match_title="Partido";
+var gastro_title="Gastronomia";
 var match_info;
 var result;
 var home_lineup;
