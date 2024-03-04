@@ -128,18 +128,195 @@ function selectPageToShow(option)
 			gastro_div.style.visibility= "hidden";
 			match_div.style.display = "block";
 			match_div.style.visibility= "visible";
-			/*match_footer.style.display = "block";
-			match_footer.style.visibility= "visible";*/
+			
+			loadMatchInfoOnline();
+			
 			break;
 		case 2: 
 			sub_header.textContent="Gastronomía";
-			match_div.style.display = "none";
-			match_div.style.visibility= "hidden";
-			/*match_footer.style.display = "none";
-			match_footer.style.visibility= "hidden";*/
+			document.getElementById("Match").style.display = "none";
+			document.getElementById("Match").style.visibility= "hidden";
+			document.getElementById("loading_div").style.display = "none";
+			document.getElementById("loading_div").style.visibility= "hidden";
+			document.getElementById("no_info_div").style.display = "none";
+			document.getElementById("no_info_div").style.visibility= "hidden";
 			gastro_div.style.display = "block";
 			gastro_div.style.visibility= "visible";
 			break;
 	}
 }
 //var match_footer=document.getElementById("match_footer");
+
+function refreshInfo()
+{
+	console.log("refreshInfor barruan");
+	document.getElementById("no_info_div").style.display = "none";
+	document.getElementById("no_info_div").style.visibility= "hidden";
+	loadMatchInfoOnline();
+}
+
+function loadMatchInfoOnline()
+{
+
+  let req = new XMLHttpRequest();
+
+	req.onreadystatechange = () => {
+	if (req.readyState == XMLHttpRequest.DONE) {
+		match_info= JSON.parse(req.responseText);
+		
+		is_data=match_info.record.info;
+		result=match_info.record.result;
+		home_lineup=match_info.record.home_team_lineup;
+		away_lineup=match_info.record.away_team_lineup;
+		home_sustitutions=match_info.record.home_team_substitution;
+		away_sustitutions=match_info.record.away_team_substitution;
+		if(is_data)
+		{
+			updateMatchInfo();
+			document.getElementById("Match").style.display = "block";
+			document.getElementById("Match").style.visibility= "visible";
+			document.getElementById("loading_div").style.display = "none";
+			document.getElementById("loading_div").style.visibility= "hidden";
+			document.getElementById("no_info_div").style.display = "none";
+			document.getElementById("no_info_div").style.visibility= "hidden";
+		}
+			
+		else
+		{
+			console.log("no hay datos buenos");
+			document.getElementById("Match").style.display = "none";
+			document.getElementById("Match").style.visibility= "hidden";
+			document.getElementById("loading_div").style.display = "none";
+			document.getElementById("loading_div").style.visibility= "hidden";
+			document.getElementById("no_info_div").style.display = "block";
+			document.getElementById("no_info_div").style.visibility= "visible";
+			
+			
+		}
+	}
+	};
+
+	req.open("GET", "https://api.jsonbin.io/v3/b/65e5e98e266cfc3fde932cbe/latest", true);
+	req.setRequestHeader("X-Master-Key", "$2b$10$aqLoNM2SWW0od0YY6OM/8efN9M6q3Y6FYMtoRw/XAgpi0tsqAqDcS");
+	req.setRequestHeader("X-Access-Key", "$2b$10$w1mfmBTC4zY7j6OHY0R8d.3nMCS6kEfSTqqoEPPAdoS3yqcGqzmWu");
+	req.send(); 
+
+	document.getElementById("no_info_div").style.display = "none";
+	document.getElementById("no_info_div").style.visibility= "hidden";
+	document.getElementById("Match").style.display = "none";
+	document.getElementById("Match").style.visibility= "hidden";
+	document.getElementById("loading_div").style.display = "block";
+	document.getElementById("loading_div").style.visibility= "visible";
+
+}
+
+function updateMatchInfo()
+{
+	//Update Result
+	document.getElementById("result_span").textContent = result;
+	//Update HomeLineup
+	document.getElementById("rs_lin_num_1").textContent = home_lineup[0].dorsal;
+	document.getElementById("rs_lin_name_1").textContent = home_lineup[0].name;
+	document.getElementById("rs_lin_num_2").textContent = home_lineup[1].dorsal;
+	document.getElementById("rs_lin_name_2").textContent = home_lineup[1].name;
+	document.getElementById("rs_lin_num_3").textContent = home_lineup[2].dorsal;
+	document.getElementById("rs_lin_name_3").textContent = home_lineup[2].name;
+	document.getElementById("rs_lin_num_4").textContent = home_lineup[3].dorsal;
+	document.getElementById("rs_lin_name_4").textContent = home_lineup[3].name;
+	document.getElementById("rs_lin_num_5").textContent = home_lineup[4].dorsal;
+	document.getElementById("rs_lin_name_5").textContent = home_lineup[4].name;
+	document.getElementById("rs_lin_num_6").textContent = home_lineup[5].dorsal;
+	document.getElementById("rs_lin_name_6").textContent = home_lineup[5].name;
+	document.getElementById("rs_lin_num_7").textContent = home_lineup[6].dorsal;
+	document.getElementById("rs_lin_name_7").textContent = home_lineup[6].name;
+	document.getElementById("rs_lin_num_8").textContent = home_lineup[7].dorsal;
+	document.getElementById("rs_lin_name_8").textContent = home_lineup[7].name;
+	document.getElementById("rs_lin_num_9").textContent = home_lineup[8].dorsal;
+	document.getElementById("rs_lin_name_9").textContent = home_lineup[8].name;
+	document.getElementById("rs_lin_num_10").textContent = home_lineup[9].dorsal;
+	document.getElementById("rs_lin_name_10").textContent = home_lineup[9].name;
+	document.getElementById("rs_lin_num_11").textContent = home_lineup[10].dorsal;
+	document.getElementById("rs_lin_name_11").textContent = home_lineup[10].name;
+	//Update AwayLineup
+	document.getElementById("away_lin_num_1").textContent = away_lineup[0].dorsal;
+	document.getElementById("away_lin_name_1").textContent = away_lineup[0].name;
+	document.getElementById("away_lin_num_2").textContent = away_lineup[1].dorsal;
+	document.getElementById("away_lin_name_2").textContent = away_lineup[1].name;
+	document.getElementById("away_lin_num_3").textContent = away_lineup[2].dorsal;
+	document.getElementById("away_lin_name_3").textContent = away_lineup[2].name;
+	document.getElementById("away_lin_num_4").textContent = away_lineup[3].dorsal;
+	document.getElementById("away_lin_name_4").textContent = away_lineup[3].name;
+	document.getElementById("away_lin_num_5").textContent = away_lineup[4].dorsal;
+	document.getElementById("away_lin_name_5").textContent = away_lineup[4].name;
+	document.getElementById("away_lin_num_6").textContent = away_lineup[5].dorsal;
+	document.getElementById("away_lin_name_6").textContent = away_lineup[5].name;
+	document.getElementById("away_lin_num_7").textContent = away_lineup[6].dorsal;
+	document.getElementById("away_lin_name_7").textContent = away_lineup[6].name;
+	document.getElementById("away_lin_num_8").textContent = away_lineup[7].dorsal;
+	document.getElementById("away_lin_name_8").textContent = away_lineup[7].name;
+	document.getElementById("away_lin_num_9").textContent = away_lineup[8].dorsal;
+	document.getElementById("away_lin_name_9").textContent = away_lineup[8].name;
+	document.getElementById("away_lin_num_10").textContent = away_lineup[9].dorsal;
+	document.getElementById("away_lin_name_10").textContent = away_lineup[9].name;
+	document.getElementById("away_lin_num_11").textContent = away_lineup[10].dorsal;
+	document.getElementById("away_lin_name_11").textContent = away_lineup[10].name;
+	//Update HomeSubs
+	document.getElementById("rs_sust_number1").textContent = home_sustitutions[0].dorsal;
+	document.getElementById("rs_sust_name1").textContent = home_sustitutions[0].name;
+	document.getElementById("rs_sust_number2").textContent = home_sustitutions[1].dorsal;
+	document.getElementById("rs_sust_name2").textContent = home_sustitutions[1].name;
+	document.getElementById("rs_sust_number3").textContent = home_sustitutions[2].dorsal;
+	document.getElementById("rs_sust_name3").textContent = home_sustitutions[2].name;
+	document.getElementById("rs_sust_number4").textContent = home_sustitutions[3].dorsal;
+	document.getElementById("rs_sust_name4").textContent = home_sustitutions[3].name;
+	document.getElementById("rs_sust_number5").textContent = home_sustitutions[4].dorsal;
+	document.getElementById("rs_sust_name5").textContent = home_sustitutions[4].name;
+	document.getElementById("rs_sust_number6").textContent = home_sustitutions[5].dorsal;
+	document.getElementById("rs_sust_name6").textContent = home_sustitutions[5].name;
+	document.getElementById("rs_sust_number7").textContent = home_sustitutions[6].dorsal;
+	document.getElementById("rs_sust_name7").textContent = home_sustitutions[6].name;
+	document.getElementById("rs_sust_number8").textContent = home_sustitutions[7].dorsal;
+	document.getElementById("rs_sust_name8").textContent = home_sustitutions[7].name;
+	document.getElementById("rs_sust_number9").textContent = home_sustitutions[8].dorsal;
+	document.getElementById("rs_sust_name9").textContent = home_sustitutions[8].name;
+	document.getElementById("rs_sust_number10").textContent = home_sustitutions[9].dorsal;
+	document.getElementById("rs_sust_name10").textContent = home_sustitutions[9].name;
+	document.getElementById("rs_sust_number11").textContent = home_sustitutions[10].dorsal;
+	document.getElementById("rs_sust_name11").textContent = home_sustitutions[10].name;
+	document.getElementById("rs_sust_number12").textContent = home_sustitutions[11].dorsal;
+	document.getElementById("rs_sust_name12").textContent = home_sustitutions[11].name;
+	//Update AwaySubs
+	document.getElementById("away_sust_number1").textContent = away_sustitutions[0].dorsal;
+	document.getElementById("away_sust_name1").textContent = away_sustitutions[0].name;
+	document.getElementById("away_sust_number2").textContent = away_sustitutions[1].dorsal;
+	document.getElementById("away_sust_name2").textContent = away_sustitutions[1].name;
+	document.getElementById("away_sust_number3").textContent = away_sustitutions[2].dorsal;
+	document.getElementById("away_sust_name3").textContent = away_sustitutions[2].name;
+	document.getElementById("away_sust_number4").textContent = away_sustitutions[3].dorsal;
+	document.getElementById("away_sust_name4").textContent = away_sustitutions[3].name;
+	document.getElementById("away_sust_number5").textContent = away_sustitutions[4].dorsal;
+	document.getElementById("away_sust_name5").textContent = away_sustitutions[4].name;
+	document.getElementById("away_sust_number6").textContent = away_sustitutions[5].dorsal;
+	document.getElementById("away_sust_name6").textContent = away_sustitutions[5].name;
+	document.getElementById("away_sust_number7").textContent = away_sustitutions[6].dorsal;
+	document.getElementById("away_sust_name7").textContent = away_sustitutions[6].name;
+	document.getElementById("away_sust_number8").textContent = away_sustitutions[7].dorsal;
+	document.getElementById("away_sust_name8").textContent = away_sustitutions[7].name;
+	document.getElementById("away_sust_number9").textContent = away_sustitutions[8].dorsal;
+	document.getElementById("away_sust_name9").textContent = away_sustitutions[8].name;
+	document.getElementById("away_sust_number10").textContent = away_sustitutions[9].dorsal;
+	document.getElementById("away_sust_name10").textContent = away_sustitutions[9].name;
+	document.getElementById("away_sust_number11").textContent = away_sustitutions[10].dorsal;
+	document.getElementById("away_sust_name11").textContent = away_sustitutions[10].name;
+	document.getElementById("away_sust_number12").textContent = away_sustitutions[11].dorsal;
+	document.getElementById("away_sust_name12").textContent = away_sustitutions[11].name;
+
+}
+
+var match_info;
+var result;
+var home_lineup;
+var home_sustitutions;
+var away_lineup;
+var away_sustitutions;
+var is_data;

@@ -409,6 +409,85 @@ body._touch .menu__list > li._active .menu__arrow {
 {
 	margin-top: 10px;
 }
+#no_info_div
+{
+	width: 100%;
+	display: none;
+	visibility: hidden;
+	position: absolute;
+    top: 105px;
+    bottom: 0;
+   
+}
+.not_info_content
+{
+	display: grid;
+    place-items: center;
+	margin-top: 100px;
+	color: #00182a;
+	font-weight: bold;
+}
+.refresh_button
+{
+	margin-top: 50px;
+	font-size: 20px;
+	background-color: #00182a;
+	color: #9e804d;
+	padding: 10px;
+	border-radius: 8px;
+	border: 2px solid #9e804d;
+}
+
+#loading_div
+{
+	display: none;
+	visibility: hidden;
+}
+
+
+
+
+
+
+
+/*-----------------------*/
+.lds-ring {
+	display: inline-block;
+	position: relative;
+	width: 80px;
+	height: 80px;
+	
+  }
+  .lds-ring div {
+	box-sizing: border-box;
+	display: block;
+	position: absolute;
+	width: 64px;
+	height: 64px;
+	margin: 8px;
+	border: 8px solid #00182a;
+	border-radius: 50%;
+	animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+	border-color: #00182a transparent transparent transparent;
+  }
+  .lds-ring div:nth-child(1) {
+	animation-delay: -0.45s;
+  }
+  .lds-ring div:nth-child(2) {
+	animation-delay: -0.3s;
+  }
+  .lds-ring div:nth-child(3) {
+	animation-delay: -0.15s;
+  }
+  @keyframes lds-ring {
+	0% {
+	  transform: rotate(0deg);
+	}
+	100% {
+	  transform: rotate(360deg);
+	}
+  }
+
 
 /*-------------------------*/
 @media (min-width: 767px) {
