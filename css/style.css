@@ -128,6 +128,7 @@ body._lock {
 	margin-bottom: 20px;
 }
 
+
 /*-------------------------*/
 
 .header {
@@ -135,7 +136,7 @@ body._lock {
 	top: 0;
 	left: 0;
 	width: 100%;
-	z-index: 10;
+	z-index: 1;
 	
 	background-color: #00182a;
 }
@@ -264,6 +265,15 @@ body._touch .menu__list > li._active .menu__arrow {
 	margin-right: 30px;
 	background-color: #9e804d
 }
+.stast_separator
+{
+	height:1.5px;
+	border-width:0;
+	color: #9e804d;
+	margin-left: 30px;
+	margin-right: 30px;
+	background-color: #9e804d
+}
 .meal_div
 {
 	padding: 10px;
@@ -273,6 +283,129 @@ body._touch .menu__list > li._active .menu__arrow {
 .meal_item
 {
 	color: #00182a;
+}
+
+#Match
+{
+	display: none;
+	visibility: hidden;	
+}
+.result_div
+{
+	padding: 20px;
+	display: grid;
+    place-items: center;
+}
+.result_span
+{
+	color: #00182a;
+	font-size: 40px;
+}
+.footer { 
+    position: absolute; 
+	width: 100%;
+	height: 35px;
+    bottom: 0; 
+    left: 0; 
+  
+	background-color: #00182a;
+	display: none;
+	visibility: hidden;	
+}
+.lineup_div
+{
+	width: 50%; 
+	float:left;
+	display: grid;
+    place-items: center;
+	height: 35px;
+	color: #9e804d;
+}
+.stats_div
+{
+	width: 50%; 
+	float:right;
+	display: grid;
+	height: 35px;
+    place-items: center;
+	color: #9e804d;
+}
+.lineup_info_div
+{
+	width: 100%;
+}
+.rs_lineup_div
+{
+	width: 50%; 
+	float:left;
+}
+.away_lineup_div
+{
+	width: 50%; 
+	float:right;
+}
+.player_div
+{
+	width: 100%;
+	height: 35px;
+}
+.number_div
+{
+	width: 25%;
+	float:left;
+	height: 35px;
+	display: grid;
+    place-items: center;
+	
+}
+.number_span
+{
+	color: #00182a;
+	font-weight: bold;
+}
+.name_div
+{
+	width: 75%;
+	float:right;
+	height: 35px;
+	display:table;
+	
+}
+.name_span
+{
+	display:table-cell;
+ 	vertical-align:middle;
+	color: #00182a;
+}
+.lineup_info_div
+{
+	display: inline-block;
+}
+.lineup_separator
+{
+	margin-top: 10px;
+	background-color: #9e804d ;
+	width: 100%;
+	height: 2px;
+	margin-left: 30px;
+	margin-right: 30px;
+}
+.substitutes_title_div
+{
+	height: 30px;
+	width: 100%;
+	padding-top: 10px;
+}
+.subitute_title
+{
+	display: grid;
+    place-items: center;
+	color: #9e804d ;
+	text-transform: uppercase;
+}
+.substitutes_info_div
+{
+	margin-top: 10px;
 }
 
 /*-------------------------*/
