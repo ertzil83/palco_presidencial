@@ -123,7 +123,11 @@ function selectPageToShow(option)
 	switch(option)
 	{
 		case 1: 
-			sub_header.textContent="Partido";
+			if(selected_language==="es")
+				sub_header.textContent="Partido";
+			else
+			sub_header.textContent="Partidua";
+			page="Match";
 			gastro_div.style.display = "none";
 			gastro_div.style.visibility= "hidden";
 			match_div.style.display = "block";
@@ -133,7 +137,11 @@ function selectPageToShow(option)
 			
 			break;
 		case 2: 
-			sub_header.textContent="Gastronomía";
+			if(selected_language==="es")
+				sub_header.textContent="Gastronomía";
+			else
+			sub_header.textContent="Gastronomia";
+			page="Gastro";
 			document.getElementById("Match").style.display = "none";
 			document.getElementById("Match").style.visibility= "hidden";
 			document.getElementById("loading_div").style.display = "none";
@@ -166,6 +174,8 @@ function loadMatchInfoOnline()
 		
 		is_data=match_info.record.info;
 		result=match_info.record.result;
+		period_es=match_info.record.period_es;
+		period_eu=match_info.record.period_eu;
 		home_lineup=match_info.record.home_team_lineup;
 		away_lineup=match_info.record.away_team_lineup;
 		home_sustitutions=match_info.record.home_team_substitution;
@@ -217,6 +227,7 @@ function updateMatchInfo()
 {
 	//Update Result
 	document.getElementById("result_span").textContent = result;
+	document.getElementById("period_span").textContent = period_es;
 	//Update HomeLineup
 	document.getElementById("rs_lin_num_1").textContent = home_lineup[0].dorsal;
 	document.getElementById("rs_lin_name_1").textContent = home_lineup[0].name;
@@ -368,7 +379,7 @@ function populateSubs(html_item,list)
 	}
 }
 
-function transEus()
+function transEus(value)
 {
 	document.getElementById("menu_match").innerHTML="Partidua";
 	match_title="Partidua";
@@ -377,6 +388,10 @@ function transEus()
 	document.getElementById("menu_idioma").innerHTML="Hizkuntza";
 	document.getElementById("menu_info").innerHTML="Informazioa";
 	document.getElementById("menu_contact").innerHTML="Kontaktua";
+	if(page==="Gastro")
+		document.getElementById("sub_header").textContent="Gastronomia";
+	else
+		document.getElementById("sub_header").textContent="Partidua";
 	document.getElementById("meal1").textContent="Solomo minia";
 	document.getElementById("meal2").textContent="Patata-tortilaren pintxoa";
 	document.getElementById("meal3").textContent="Urdaiazpiko kroketa";
@@ -390,13 +405,17 @@ function transEus()
 	document.getElementById("meal11").textContent="Askotariko pasteltxoak";
 	document.getElementById("meal12").textContent="Gazta tarta";
 	document.getElementById("meal13").textContent="Askotariko gaztak";
+	document.getElementById("period_span").textContent = period_eu;
+	document.getElementById("alin_title").textContent="Hamaikakoak";
 	document.getElementById("subitute_title").textContent="Aldaketak";
 	document.getElementById("sub_title").textContent="Ordezkoak";
 	document.getElementById("no_info_text1").textContent="Informazioa oraindik ez dago eskuragarri.";
 	document.getElementById("no_info_text2").textContent="Mesedez, saiatu beranduago.";
 	document.getElementById("meal13").textContent="Eguneratu";
-	
-	showHideMenu();
+	localStorage.setItem('lang', "eu");
+	selected_language="eu"
+	if(value)
+		showHideMenu();
 }
 
 function transCas()
@@ -408,6 +427,10 @@ function transCas()
 	document.getElementById("menu_idioma").innerHTML="Idioma";
 	document.getElementById("menu_info").innerHTML="Información";
 	document.getElementById("menu_contact").innerHTML="Contacto";
+	if(page==="Gastro")
+		document.getElementById("sub_header").textContent="Gastronomía";
+	else
+		document.getElementById("sub_header").textContent="Partido";
 	document.getElementById("meal1").textContent="Mini de lomo";
 	document.getElementById("meal2").textContent="Pintxo de tortilla de patata";
 	document.getElementById("meal3").textContent="Croqueta de jamón";
@@ -421,21 +444,37 @@ function transCas()
 	document.getElementById("meal11").textContent="Pastelitos variados";
 	document.getElementById("meal12").textContent="Tarta de queso";
 	document.getElementById("meal13").textContent="Quesos variados";
+	document.getElementById("period_span").textContent = period_es;
+	document.getElementById("alin_title").textContent="Alineaciones";
 	document.getElementById("subitute_title").textContent="Sustituciones";
 	document.getElementById("sub_title").textContent="Suplentes";
 	document.getElementById("no_info_text1").textContent="La información no está disponible todavía.";
 	document.getElementById("no_info_text2").textContent="Por favor, inténtelo más tarde.";
 	document.getElementById("meal13").textContent="Actualizar";
-	
+	localStorage.setItem('lang', "es");
+	selected_language="es"
 	showHideMenu();
+}
+
+function checkLanguage()
+{
+	var value=localStorage.getItem("lang")
+	if(selected_language===null)
+		selected_language="es"
+	else
+		selected_language=value;
 }
 
 
 
 var match_title="Partido";
+var page="Gastro";
+var selected_language;
 var gastro_title="Gastronomia";
 var match_info;
 var result;
+var period_es;
+var period_eu;
 var home_lineup;
 var home_sustitutions;
 var home_subs=[];
@@ -444,3 +483,7 @@ var away_sustitutions;
 var away_subs=[];
 var is_data;
 var substitutions;
+
+checkLanguage();
+if(selected_language==="eu")
+	transEus(false);
