@@ -411,7 +411,7 @@ function transEus(value)
 	document.getElementById("sub_title").textContent="Ordezkoak";
 	document.getElementById("no_info_text1").textContent="Informazioa oraindik ez dago eskuragarri.";
 	document.getElementById("no_info_text2").textContent="Mesedez, saiatu beranduago.";
-	document.getElementById("meal13").textContent="Eguneratu";
+	document.getElementById("refresh_button").textContent="Eguneratu";
 	localStorage.setItem('lang', "eu");
 	selected_language="eu"
 	if(value)
@@ -450,7 +450,7 @@ function transCas()
 	document.getElementById("sub_title").textContent="Suplentes";
 	document.getElementById("no_info_text1").textContent="La información no está disponible todavía.";
 	document.getElementById("no_info_text2").textContent="Por favor, inténtelo más tarde.";
-	document.getElementById("meal13").textContent="Actualizar";
+	document.getElementById("refresh_button").textContent="Actualizar";
 	localStorage.setItem('lang', "es");
 	selected_language="es"
 	showHideMenu();
