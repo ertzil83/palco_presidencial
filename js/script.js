@@ -484,16 +484,40 @@ var away_subs=[];
 var is_data;
 var substitutions;
 
-if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
-    // When ready, auto-scroll 1px to hide URL bar
-    window.addEventListener("load", function () {
-        // Set a timeout...
-        setTimeout(function () {
-            // Hide the address bar!
-            window.scrollTo(0, 1);
-        }, 0);
-    });
-}
+(function( win ){
+	var doc = win.document;
+	
+	// If there's a hash, or addEventListener is undefined, stop here
+	if( !location.hash && win.addEventListener ){
+		
+		//scroll to 1
+		win.scrollTo( 0, 1 );
+		var scrollTop = 1,
+			getScrollTop = function(){
+				return win.pageYOffset || doc.compatMode === "CSS1Compat" && doc.documentElement.scrollTop || doc.body.scrollTop || 0;
+			},
+		
+			//reset to 0 on bodyready, if needed
+			bodycheck = setInterval(function(){
+				if( doc.body ){
+					clearInterval( bodycheck );
+					scrollTop = getScrollTop();
+					win.scrollTo( 0, scrollTop === 1 ? 0 : 1 );
+				}	
+			}, 15 );
+		
+		win.addEventListener( "load", function(){
+			setTimeout(function(){
+				//at load, if user hasn't scrolled more than 20 or so...
+				if( getScrollTop() < 20 ){
+					//reset to hide addr bar at onload
+					win.scrollTo( 0, scrollTop === 1 ? 0 : 1 );
+				}
+			}, 0);
+		}, false );
+	}
+})( this );
+
 checkLanguage();
 if(selected_language==="eu")
 	transEus(false);
