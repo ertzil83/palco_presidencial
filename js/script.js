@@ -468,7 +468,7 @@ function checkLanguage()
 
 
 var match_title="Partido";
-var page="Gastro";
+var page="Match";
 var selected_language;
 var gastro_title="Gastronomia";
 var match_info;
