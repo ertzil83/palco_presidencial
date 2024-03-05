@@ -485,7 +485,7 @@ var is_data;
 var substitutions;
 
 
-
+loadMatchInfoOnline();
 checkLanguage();
 if(selected_language==="eu")
 	transEus(false);
