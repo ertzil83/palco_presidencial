@@ -378,7 +378,7 @@ function populateSubs(html_item,list)
 		document.getElementById(html_item).innerHTML += html;
 	}
 }
-
+//Itzulpenak
 function transEus(value)
 {
 	document.getElementById("menu_match").innerHTML="Partidua";
