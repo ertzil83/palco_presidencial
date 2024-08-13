@@ -173,6 +173,8 @@ function loadMatchInfoOnline()
 		match_info= JSON.parse(req.responseText);
 		
 		is_data=match_info.record.info;
+		opta=match_info.record.opta;
+		match_id=match_info.record.match_id;
 		result=match_info.record.result;
 		period_es=match_info.record.period_es;
 		period_eu=match_info.record.period_eu;
@@ -185,7 +187,8 @@ function loadMatchInfoOnline()
 		away_subs=match_info.record.away_subs;
 		if(is_data)
 		{
-			updateMatchInfo();
+			if(!opta)
+				updateMatchInfo();
 			document.getElementById("Match").style.display = "block";
 			document.getElementById("Match").style.visibility= "visible";
 			document.getElementById("loading_div").style.display = "none";
@@ -386,6 +389,7 @@ function transEus(value)
 	document.getElementById("menu_gastro").innerHTML="Gastronomia";
 	gastro_title="Gastronomia"
 	document.getElementById("menu_idioma").innerHTML="Hizkuntza";
+	document.getElementById("menu_boletin").innerHTML="Aldizkaria";
 	document.getElementById("menu_info").innerHTML="Informazioa";
 	document.getElementById("menu_contact").innerHTML="Kontaktua";
 	if(page==="Gastro")
@@ -425,6 +429,7 @@ function transCas()
 	document.getElementById("menu_gastro").innerHTML="Gastronomía";
 	gastro_title="Gastronomía"
 	document.getElementById("menu_idioma").innerHTML="Idioma";
+	document.getElementById("menu_boletin").innerHTML="Boletín";
 	document.getElementById("menu_info").innerHTML="Información";
 	document.getElementById("menu_contact").innerHTML="Contacto";
 	if(page==="Gastro")
@@ -483,7 +488,8 @@ var away_sustitutions;
 var away_subs=[];
 var is_data;
 var substitutions;
-
+var opta;
+var match_id;
 
 loadMatchInfoOnline();
 checkLanguage();
