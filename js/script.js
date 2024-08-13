@@ -470,7 +470,7 @@ function checkLanguage()
 		selected_language=value;
 }
 
-
+//Testing
 
 var match_title="Partido";
 var page="Match";
