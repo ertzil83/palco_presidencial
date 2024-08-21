@@ -174,7 +174,7 @@ function loadMatchInfoOnline()
 		
 		is_data=match_info.record.info;
 		opta=match_info.record.opta;
-		match_id=match_info.record.match_id;
+		opta_match_id=match_info.record.match_id;
 		result=match_info.record.result;
 		period_es=match_info.record.period_es;
 		period_eu=match_info.record.period_eu;
@@ -188,13 +188,22 @@ function loadMatchInfoOnline()
 		if(is_data)
 		{
 			if(!opta)
+			{
 				updateMatchInfo();
-			document.getElementById("Match").style.display = "block";
-			document.getElementById("Match").style.visibility= "visible";
-			document.getElementById("loading_div").style.display = "none";
-			document.getElementById("loading_div").style.visibility= "hidden";
-			document.getElementById("no_info_div").style.display = "none";
-			document.getElementById("no_info_div").style.visibility= "hidden";
+				document.getElementById("Match").style.display = "block";
+				document.getElementById("Match").style.visibility= "visible";
+				document.getElementById("loading_div").style.display = "none";
+				document.getElementById("loading_div").style.visibility= "hidden";
+				document.getElementById("no_info_div").style.display = "none";
+				document.getElementById("no_info_div").style.visibility= "hidden";
+			}
+				
+			else
+			{
+				updateMatchInfoFromOpta();
+			}
+				
+			
 		}
 			
 		else
@@ -225,6 +234,286 @@ function loadMatchInfoOnline()
 	document.getElementById("loading_div").style.visibility= "visible";
 
 }
+
+var stats;
+var home_playerlist;
+var home_teamInfo;
+var away_playerlist;
+var away_teamInfo;
+var teamInfo;
+var playerlist;
+var opta_match_id;
+var sub_array;
+
+
+function updateMatchInfoFromOpta()
+{
+	var xhr = new XMLHttpRequest();
+  xhr.withCredentials = false;
+  
+  xhr.addEventListener("readystatechange", function() {
+    if(this.readyState === 4) {
+      stats= JSON.parse(this.responseText);
+      
+      home_playerlist=stats.SoccerFeed.SoccerDocument.Team[0].Player;
+      home_teamInfo=stats.SoccerFeed.SoccerDocument.MatchData.TeamData[0];
+      away_playerlist=stats.SoccerFeed.SoccerDocument.Team[1].Player;
+      away_teamInfo=stats.SoccerFeed.SoccerDocument.MatchData.TeamData[1];
+      teamInfo=home_teamInfo;
+      playerlist=home_playerlist;
+	  sub_array=new Array();
+
+	  console.log(stats.SoccerFeed.SoccerDocument.MatchData);
+      paintPlayerList();
+      document.getElementById("Match").style.display = "block";
+	  document.getElementById("Match").style.visibility= "visible";
+	  document.getElementById("loading_div").style.display = "none";
+	  document.getElementById("loading_div").style.visibility= "hidden";
+	  document.getElementById("no_info_div").style.display = "none";
+	  document.getElementById("no_info_div").style.visibility= "hidden";
+    }
+  });
+  
+ 
+
+  
+  xhr.open("GET", "https://proxy.cors.sh/https://secure.omo.akamai.opta.net/?game_id="+opta_match_id+"&feed_type=f9&user=RealSociedad&psw=zcgmFn8QFd&json=%22%22");
+ xhr.setRequestHeader("x-cors-api-key", "temp_0f6f1cb644c0fa2a982dba14bf025b38");
+ xhr.setRequestHeader("x-requested-with", "XMLHttpRequest");
+  
+xhr.send()
+}
+
+function paintPlayerList()
+{
+	//Update Result
+	document.getElementById("result_span").textContent = home_teamInfo["@attributes"]["Score"] +" - "+away_teamInfo["@attributes"]["Score"];
+	document.getElementById("period_span").textContent = period_es;
+	document.getElementById("rs_lin_num_1").textContent = home_teamInfo.PlayerLineUp.MatchPlayer[0]["@attributes"].ShirtNumber;
+	document.getElementById("rs_lin_name_1").textContent = getName(home_teamInfo,0);
+	document.getElementById("rs_lin_num_2").textContent = home_teamInfo.PlayerLineUp.MatchPlayer[1]["@attributes"].ShirtNumber;
+	document.getElementById("rs_lin_name_2").textContent = getName(home_teamInfo,1);
+	document.getElementById("rs_lin_num_3").textContent = home_teamInfo.PlayerLineUp.MatchPlayer[2]["@attributes"].ShirtNumber;
+	document.getElementById("rs_lin_name_3").textContent = getName(home_teamInfo,2);
+	document.getElementById("rs_lin_num_4").textContent = home_teamInfo.PlayerLineUp.MatchPlayer[3]["@attributes"].ShirtNumber;
+	document.getElementById("rs_lin_name_4").textContent = getName(home_teamInfo,3);
+	document.getElementById("rs_lin_num_5").textContent = home_teamInfo.PlayerLineUp.MatchPlayer[4]["@attributes"].ShirtNumber;
+	document.getElementById("rs_lin_name_5").textContent = getName(home_teamInfo,4);
+	document.getElementById("rs_lin_num_6").textContent = home_teamInfo.PlayerLineUp.MatchPlayer[5]["@attributes"].ShirtNumber;
+	document.getElementById("rs_lin_name_6").textContent = getName(home_teamInfo,5);
+	document.getElementById("rs_lin_num_7").textContent = home_teamInfo.PlayerLineUp.MatchPlayer[6]["@attributes"].ShirtNumber;
+	document.getElementById("rs_lin_name_7").textContent = getName(home_teamInfo,6);
+	document.getElementById("rs_lin_num_8").textContent = home_teamInfo.PlayerLineUp.MatchPlayer[7]["@attributes"].ShirtNumber;
+	document.getElementById("rs_lin_name_8").textContent = getName(home_teamInfo,7);
+	document.getElementById("rs_lin_num_9").textContent = home_teamInfo.PlayerLineUp.MatchPlayer[8]["@attributes"].ShirtNumber;
+	document.getElementById("rs_lin_name_9").textContent = getName(home_teamInfo,8);
+	document.getElementById("rs_lin_num_10").textContent = home_teamInfo.PlayerLineUp.MatchPlayer[9]["@attributes"].ShirtNumber;
+	document.getElementById("rs_lin_name_10").textContent = getName(home_teamInfo,9);
+	document.getElementById("rs_lin_num_11").textContent = home_teamInfo.PlayerLineUp.MatchPlayer[10]["@attributes"].ShirtNumber;
+	document.getElementById("rs_lin_name_11").textContent = getName(home_teamInfo,10);
+	populateSubHtml("rs_subs_div");
+
+	playerlist=away_playerlist;
+	teamInfo=away_teamInfo;
+	document.getElementById("away_lin_num_1").textContent = away_teamInfo.PlayerLineUp.MatchPlayer[0]["@attributes"].ShirtNumber;
+	document.getElementById("away_lin_name_1").textContent = getName(away_teamInfo,0);
+	document.getElementById("away_lin_num_2").textContent = away_teamInfo.PlayerLineUp.MatchPlayer[1]["@attributes"].ShirtNumber;
+	document.getElementById("away_lin_name_2").textContent = getName(away_teamInfo,1);
+	document.getElementById("away_lin_num_3").textContent = away_teamInfo.PlayerLineUp.MatchPlayer[2]["@attributes"].ShirtNumber;
+	document.getElementById("away_lin_name_3").textContent = getName(away_teamInfo,2);
+	document.getElementById("away_lin_num_4").textContent = away_teamInfo.PlayerLineUp.MatchPlayer[3]["@attributes"].ShirtNumber;
+	document.getElementById("away_lin_name_4").textContent = getName(away_teamInfo,3);
+	document.getElementById("away_lin_num_5").textContent = away_teamInfo.PlayerLineUp.MatchPlayer[4]["@attributes"].ShirtNumber;
+	document.getElementById("away_lin_name_5").textContent = getName(away_teamInfo,4);
+	document.getElementById("away_lin_num_6").textContent = away_teamInfo.PlayerLineUp.MatchPlayer[5]["@attributes"].ShirtNumber;
+	document.getElementById("away_lin_name_6").textContent = getName(away_teamInfo,5);
+	document.getElementById("away_lin_num_7").textContent = away_teamInfo.PlayerLineUp.MatchPlayer[6]["@attributes"].ShirtNumber;
+	document.getElementById("away_lin_name_7").textContent = getName(away_teamInfo,6);
+	document.getElementById("away_lin_num_8").textContent = away_teamInfo.PlayerLineUp.MatchPlayer[7]["@attributes"].ShirtNumber;
+	document.getElementById("away_lin_name_8").textContent = getName(away_teamInfo,7);
+	document.getElementById("away_lin_num_9").textContent = away_teamInfo.PlayerLineUp.MatchPlayer[8]["@attributes"].ShirtNumber;
+	document.getElementById("away_lin_name_9").textContent = getName(away_teamInfo,8);
+	document.getElementById("away_lin_num_10").textContent = away_teamInfo.PlayerLineUp.MatchPlayer[9]["@attributes"].ShirtNumber;
+	document.getElementById("away_lin_name_10").textContent = getName(away_teamInfo,9);
+	document.getElementById("away_lin_num_11").textContent = away_teamInfo.PlayerLineUp.MatchPlayer[10]["@attributes"].ShirtNumber;
+	document.getElementById("away_lin_name_11").textContent = getName(away_teamInfo,10);
+	populateSubHtml("away_subs_div");
+	
+}
+
+function populateSubHtml(name)
+{
+	var result="";
+	var line;
+  for(var i=11; i< teamInfo.PlayerLineUp.MatchPlayer.length;i++)
+  {
+	line='<div class="player_div">'+
+	'<div class="number_div">'+
+		'<span class="number_span" id="away_sust_number1">'+teamInfo.PlayerLineUp.MatchPlayer[i]["@attributes"].ShirtNumber+'</span>'+
+	'</div>'+
+	'<div class="name_div">'+
+		'<span class="name_span" id="away_sust_name1">'+getName(teamInfo,i)+'</span>'+
+	'</div>'+
+	'</div>';
+	result=result+line;
+	
+  }
+  var div = document.getElementById(name);
+ div.innerHTML ="";
+ div.innerHTML = result;
+}
+
+function getName(selectedTeamInfo,id)
+{
+	
+	//var lineup=list.PlayerLineUp.MatchPlayer;
+	var result="";
+	var player=selectedTeamInfo.PlayerLineUp.MatchPlayer[id];
+	var player_id=player["@attributes"].PlayerRef;
+	var name=getPlayerName(playerlist,player_id);
+	result=name+checkSubstitutionsIn(player_id) +checkCards(player_id)+checkGoals(player_id)+checkSubstitutions(player_id);
+	return result;
+  
+}
+
+
+
+function getPlayerName(p_list,id)
+{
+  var name="";
+  for (var i = 0; i < p_list.length; i++)
+  {
+    var player=p_list[i];
+    if(id==player["@attributes"].uID)
+    {
+		console.log("Izena: "+player.PersonName.Known);
+      if(player.PersonName.hasOwnProperty('Known'))
+        name=player.PersonName.Known;
+      else
+        name=(player.PersonName.First).substring(0, 1)+"."+player.PersonName.Last;
+      break;
+    }
+  }
+  return name;
+}
+
+function checkSubstitutions(id)
+{
+  var result="";
+  var subOnID;
+  if(teamInfo.hasOwnProperty('Substitution'))
+  {
+    var sub_list=teamInfo.Substitution;
+    if(Array.isArray(sub_list))
+      for (var i = 0; i < sub_list.length; i++)
+      {
+        if(sub_list[i]["@attributes"].SubOff==id)
+        {
+          subOnID=sub_list[i]["@attributes"].SubOn;
+		  result="🔽";
+		  sub_array.push(subOnID);
+          //result=" ⇆ "+"<button  class='player_button' onclick='loadPlayerInfo(\"" + subOnID + "\")'>"+getPlayerNumber(subOnID) + " "+ getPlayerName(subOnID) + " "+checkCards(subOnID) +" "+checkGoals(subOnID)+"</button>";
+          break;
+        }
+      }
+    else
+    {
+      if(sub_list["@attributes"].SubOff==id)
+        {
+          subOnID=sub_list["@attributes"].SubOn;
+		  result="🔽";
+		  sub_array.push(subOnID);
+          //result=" ⇆ "+"<button  class='player_button' onclick='loadPlayerInfo(\"" + subOnID + "\")'>"+getPlayerNumber(subOnID) + " "+ getPlayerName(subOnID) + " "+checkCards(subOnID) +" "+checkGoals(subOnID)+"</button>";
+          
+        }
+    }
+    
+  }
+  return result;
+}
+
+function checkSubstitutionsIn(id)
+{
+	var result="";
+	for(var i=0; i<sub_array.length;i++)
+	{
+		if(id==sub_array[i])
+		{
+			result="🔼";
+			break;
+		}
+	}
+	return result;
+}
+
+function checkCards(id)
+{
+  var result="";
+  if(teamInfo.hasOwnProperty('Booking'))
+  {
+    var book_list=teamInfo.Booking;
+    if(Array.isArray(book_list))
+    {
+      for (var i = 0; i < book_list.length; i++)
+      {
+        if(book_list[i]["@attributes"].PlayerRef==id)
+        {
+          if(book_list[i]["@attributes"].Card=="Yellow")
+            result=result+"🟨";
+          if(book_list[i]["@attributes"].Card=="Red")
+            result=result+"🟥";
+        }
+      }
+    }
+    else
+    {
+      if(book_list["@attributes"].PlayerRef==id)
+        {
+          if(book_list["@attributes"].Card=="Yellow")
+            result=result+"🟨";
+          if(book_list["@attributes"].Card=="Red")
+            result=result+"🟥";
+        }
+    }
+    
+    
+    
+  }
+  return result;
+}
+
+function checkGoals(id)
+{
+  var result="";
+  if(teamInfo.hasOwnProperty('Goal'))
+  {
+    
+    var goal_list=teamInfo.Goal;
+    
+    if(Array.isArray(goal_list))
+    {
+      for (var i = 0; i < goal_list.length; i++)
+      {
+        if(goal_list[i]["@attributes"].PlayerRef==id)
+        {
+          result=result+"⚽";
+        }
+      }
+    }
+    else
+    {
+     
+      if(goal_list["@attributes"].PlayerRef==id)
+        {
+          
+          result=result+"⚽";
+        }
+    }
+    
+  }
+  return result;
+}
+
 
 function updateMatchInfo()
 {
