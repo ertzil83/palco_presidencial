@@ -286,73 +286,88 @@ xhr.send()
 
 function paintPlayerList()
 {
+
+	var LineUpArray = home_teamInfo.PlayerLineUp.MatchPlayer.slice(1, 11);
+	var SubsArray=home_teamInfo.PlayerLineUp.MatchPlayer.slice(11);
+	//var sortedLineUpArray = LineUpArray.sort(({age:a}, {age:b}) => b-a);
+	let sortedLineUpArray = LineUpArray.sort((a,b) => (parseInt(a["@attributes"].ShirtNumber) < parseInt(b["@attributes"].ShirtNumber)) ? -1 : ((parseInt(b["@attributes"].ShirtNumber) > parseInt(a["@attributes"].ShirtNumber)) ? 1 : 0))
+	let sortedSubsArray = SubsArray.sort((a,b) => (parseInt(a["@attributes"].ShirtNumber) < parseInt(b["@attributes"].ShirtNumber)) ? -1 : ((parseInt(b["@attributes"].ShirtNumber) > parseInt(a["@attributes"].ShirtNumber)) ? 1 : 0))
+	
+	
+
 	//Update Result
 	document.getElementById("result_span").textContent = home_teamInfo["@attributes"]["Score"] +" - "+away_teamInfo["@attributes"]["Score"];
 	document.getElementById("period_span").textContent = period_es;
 	document.getElementById("rs_lin_num_1").textContent = home_teamInfo.PlayerLineUp.MatchPlayer[0]["@attributes"].ShirtNumber;
-	document.getElementById("rs_lin_name_1").textContent = getName(home_teamInfo,0);
-	document.getElementById("rs_lin_num_2").textContent = home_teamInfo.PlayerLineUp.MatchPlayer[1]["@attributes"].ShirtNumber;
-	document.getElementById("rs_lin_name_2").textContent = getName(home_teamInfo,1);
-	document.getElementById("rs_lin_num_3").textContent = home_teamInfo.PlayerLineUp.MatchPlayer[2]["@attributes"].ShirtNumber;
-	document.getElementById("rs_lin_name_3").textContent = getName(home_teamInfo,2);
-	document.getElementById("rs_lin_num_4").textContent = home_teamInfo.PlayerLineUp.MatchPlayer[3]["@attributes"].ShirtNumber;
-	document.getElementById("rs_lin_name_4").textContent = getName(home_teamInfo,3);
-	document.getElementById("rs_lin_num_5").textContent = home_teamInfo.PlayerLineUp.MatchPlayer[4]["@attributes"].ShirtNumber;
-	document.getElementById("rs_lin_name_5").textContent = getName(home_teamInfo,4);
-	document.getElementById("rs_lin_num_6").textContent = home_teamInfo.PlayerLineUp.MatchPlayer[5]["@attributes"].ShirtNumber;
-	document.getElementById("rs_lin_name_6").textContent = getName(home_teamInfo,5);
-	document.getElementById("rs_lin_num_7").textContent = home_teamInfo.PlayerLineUp.MatchPlayer[6]["@attributes"].ShirtNumber;
-	document.getElementById("rs_lin_name_7").textContent = getName(home_teamInfo,6);
-	document.getElementById("rs_lin_num_8").textContent = home_teamInfo.PlayerLineUp.MatchPlayer[7]["@attributes"].ShirtNumber;
-	document.getElementById("rs_lin_name_8").textContent = getName(home_teamInfo,7);
-	document.getElementById("rs_lin_num_9").textContent = home_teamInfo.PlayerLineUp.MatchPlayer[8]["@attributes"].ShirtNumber;
-	document.getElementById("rs_lin_name_9").textContent = getName(home_teamInfo,8);
-	document.getElementById("rs_lin_num_10").textContent = home_teamInfo.PlayerLineUp.MatchPlayer[9]["@attributes"].ShirtNumber;
-	document.getElementById("rs_lin_name_10").textContent = getName(home_teamInfo,9);
-	document.getElementById("rs_lin_num_11").textContent = home_teamInfo.PlayerLineUp.MatchPlayer[10]["@attributes"].ShirtNumber;
-	document.getElementById("rs_lin_name_11").textContent = getName(home_teamInfo,10);
-	populateSubHtml("rs_subs_div");
+	document.getElementById("rs_lin_name_1").textContent = getName(home_teamInfo,home_teamInfo.PlayerLineUp.MatchPlayer[0]["@attributes"].PlayerRef);
+	document.getElementById("rs_lin_num_2").textContent = sortedLineUpArray[0]["@attributes"].ShirtNumber;
+	document.getElementById("rs_lin_name_2").textContent = getName(home_teamInfo,sortedLineUpArray[0]["@attributes"].PlayerRef);
+	document.getElementById("rs_lin_num_3").textContent = sortedLineUpArray[1]["@attributes"].ShirtNumber;
+	document.getElementById("rs_lin_name_3").textContent = getName(home_teamInfo,sortedLineUpArray[1]["@attributes"].PlayerRef);
+	document.getElementById("rs_lin_num_4").textContent = sortedLineUpArray[2]["@attributes"].ShirtNumber;
+	document.getElementById("rs_lin_name_4").textContent = getName(home_teamInfo,sortedLineUpArray[2]["@attributes"].PlayerRef);
+	document.getElementById("rs_lin_num_5").textContent = sortedLineUpArray[3]["@attributes"].ShirtNumber;
+	document.getElementById("rs_lin_name_5").textContent = getName(home_teamInfo,sortedLineUpArray[3]["@attributes"].PlayerRef);
+	document.getElementById("rs_lin_num_6").textContent = sortedLineUpArray[4]["@attributes"].ShirtNumber;
+	document.getElementById("rs_lin_name_6").textContent = getName(home_teamInfo,sortedLineUpArray[4]["@attributes"].PlayerRef);
+	document.getElementById("rs_lin_num_7").textContent = sortedLineUpArray[5]["@attributes"].ShirtNumber;
+	document.getElementById("rs_lin_name_7").textContent = getName(home_teamInfo,sortedLineUpArray[5]["@attributes"].PlayerRef);
+	document.getElementById("rs_lin_num_8").textContent = sortedLineUpArray[6]["@attributes"].ShirtNumber;
+	document.getElementById("rs_lin_name_8").textContent = getName(home_teamInfo,sortedLineUpArray[6]["@attributes"].PlayerRef);
+	document.getElementById("rs_lin_num_9").textContent = sortedLineUpArray[7]["@attributes"].ShirtNumber;
+	document.getElementById("rs_lin_name_9").textContent = getName(home_teamInfo,sortedLineUpArray[7]["@attributes"].PlayerRef);
+	document.getElementById("rs_lin_num_10").textContent = sortedLineUpArray[8]["@attributes"].ShirtNumber;
+	document.getElementById("rs_lin_name_10").textContent = getName(home_teamInfo,sortedLineUpArray[8]["@attributes"].PlayerRef);
+	document.getElementById("rs_lin_num_11").textContent = sortedLineUpArray[9]["@attributes"].ShirtNumber;
+	document.getElementById("rs_lin_name_11").textContent = getName(home_teamInfo,sortedLineUpArray[9]["@attributes"].PlayerRef);
+	populateSubHtml("rs_subs_div",sortedSubsArray);
 
 	playerlist=away_playerlist;
 	teamInfo=away_teamInfo;
+	LineUpArray = away_teamInfo.PlayerLineUp.MatchPlayer.slice(1, 11);
+	SubsArray=away_teamInfo.PlayerLineUp.MatchPlayer.slice(11);
+	//var sortedLineUpArray = LineUpArray.sort(({age:a}, {age:b}) => b-a);
+	let sortedAwayLineUpArray = LineUpArray.sort((a,b) => (parseInt(a["@attributes"].ShirtNumber) < parseInt(b["@attributes"].ShirtNumber)) ? -1 : ((parseInt(b["@attributes"].ShirtNumber) > parseInt(a["@attributes"].ShirtNumber)) ? 1 : 0))
+	let sortedAwaySubsArray = SubsArray.sort((a,b) => (parseInt(a["@attributes"].ShirtNumber) < parseInt(b["@attributes"].ShirtNumber)) ? -1 : ((parseInt(b["@attributes"].ShirtNumber) > parseInt(a["@attributes"].ShirtNumber)) ? 1 : 0))
+	
 	document.getElementById("away_lin_num_1").textContent = away_teamInfo.PlayerLineUp.MatchPlayer[0]["@attributes"].ShirtNumber;
-	document.getElementById("away_lin_name_1").textContent = getName(away_teamInfo,0);
-	document.getElementById("away_lin_num_2").textContent = away_teamInfo.PlayerLineUp.MatchPlayer[1]["@attributes"].ShirtNumber;
-	document.getElementById("away_lin_name_2").textContent = getName(away_teamInfo,1);
-	document.getElementById("away_lin_num_3").textContent = away_teamInfo.PlayerLineUp.MatchPlayer[2]["@attributes"].ShirtNumber;
-	document.getElementById("away_lin_name_3").textContent = getName(away_teamInfo,2);
-	document.getElementById("away_lin_num_4").textContent = away_teamInfo.PlayerLineUp.MatchPlayer[3]["@attributes"].ShirtNumber;
-	document.getElementById("away_lin_name_4").textContent = getName(away_teamInfo,3);
-	document.getElementById("away_lin_num_5").textContent = away_teamInfo.PlayerLineUp.MatchPlayer[4]["@attributes"].ShirtNumber;
-	document.getElementById("away_lin_name_5").textContent = getName(away_teamInfo,4);
-	document.getElementById("away_lin_num_6").textContent = away_teamInfo.PlayerLineUp.MatchPlayer[5]["@attributes"].ShirtNumber;
-	document.getElementById("away_lin_name_6").textContent = getName(away_teamInfo,5);
-	document.getElementById("away_lin_num_7").textContent = away_teamInfo.PlayerLineUp.MatchPlayer[6]["@attributes"].ShirtNumber;
-	document.getElementById("away_lin_name_7").textContent = getName(away_teamInfo,6);
-	document.getElementById("away_lin_num_8").textContent = away_teamInfo.PlayerLineUp.MatchPlayer[7]["@attributes"].ShirtNumber;
-	document.getElementById("away_lin_name_8").textContent = getName(away_teamInfo,7);
-	document.getElementById("away_lin_num_9").textContent = away_teamInfo.PlayerLineUp.MatchPlayer[8]["@attributes"].ShirtNumber;
-	document.getElementById("away_lin_name_9").textContent = getName(away_teamInfo,8);
-	document.getElementById("away_lin_num_10").textContent = away_teamInfo.PlayerLineUp.MatchPlayer[9]["@attributes"].ShirtNumber;
-	document.getElementById("away_lin_name_10").textContent = getName(away_teamInfo,9);
-	document.getElementById("away_lin_num_11").textContent = away_teamInfo.PlayerLineUp.MatchPlayer[10]["@attributes"].ShirtNumber;
-	document.getElementById("away_lin_name_11").textContent = getName(away_teamInfo,10);
-	populateSubHtml("away_subs_div");
+	document.getElementById("away_lin_name_1").textContent = getName(away_teamInfo,away_teamInfo.PlayerLineUp.MatchPlayer[0]["@attributes"].PlayerRef);
+	document.getElementById("away_lin_num_2").textContent = sortedAwayLineUpArray[0]["@attributes"].ShirtNumber;
+	document.getElementById("away_lin_name_2").textContent = getName(away_teamInfo,sortedAwayLineUpArray[0]["@attributes"].PlayerRef);
+	document.getElementById("away_lin_num_3").textContent = sortedAwayLineUpArray[1]["@attributes"].ShirtNumber;
+	document.getElementById("away_lin_name_3").textContent = getName(away_teamInfo,sortedAwayLineUpArray[1]["@attributes"].PlayerRef);
+	document.getElementById("away_lin_num_4").textContent = sortedAwayLineUpArray[2]["@attributes"].ShirtNumber;
+	document.getElementById("away_lin_name_4").textContent = getName(away_teamInfo,sortedAwayLineUpArray[2]["@attributes"].PlayerRef);
+	document.getElementById("away_lin_num_5").textContent = sortedAwayLineUpArray[3]["@attributes"].ShirtNumber;
+	document.getElementById("away_lin_name_5").textContent = getName(away_teamInfo,sortedAwayLineUpArray[3]["@attributes"].PlayerRef);
+	document.getElementById("away_lin_num_6").textContent = sortedAwayLineUpArray[4]["@attributes"].ShirtNumber;
+	document.getElementById("away_lin_name_6").textContent = getName(away_teamInfo,sortedAwayLineUpArray[4]["@attributes"].PlayerRef);
+	document.getElementById("away_lin_num_7").textContent = sortedAwayLineUpArray[5]["@attributes"].ShirtNumber;
+	document.getElementById("away_lin_name_7").textContent = getName(away_teamInfo,sortedAwayLineUpArray[5]["@attributes"].PlayerRef);
+	document.getElementById("away_lin_num_8").textContent = sortedAwayLineUpArray[6]["@attributes"].ShirtNumber;
+	document.getElementById("away_lin_name_8").textContent = getName(away_teamInfo,sortedAwayLineUpArray[6]["@attributes"].PlayerRef);
+	document.getElementById("away_lin_num_9").textContent = sortedAwayLineUpArray[7]["@attributes"].ShirtNumber;
+	document.getElementById("away_lin_name_9").textContent = getName(away_teamInfo,sortedAwayLineUpArray[7]["@attributes"].PlayerRef);
+	document.getElementById("away_lin_num_10").textContent = sortedAwayLineUpArray[8]["@attributes"].ShirtNumber;
+	document.getElementById("away_lin_name_10").textContent = getName(away_teamInfo,sortedAwayLineUpArray[8]["@attributes"].PlayerRef);
+	document.getElementById("away_lin_num_11").textContent = sortedAwayLineUpArray[9]["@attributes"].ShirtNumber;
+	document.getElementById("away_lin_name_11").textContent = getName(away_teamInfo,sortedAwayLineUpArray[9]["@attributes"].PlayerRef);
+	populateSubHtml("away_subs_div",sortedAwaySubsArray);
 	
 }
 
-function populateSubHtml(name)
+function populateSubHtml(name, sortedList)
 {
 	var result="";
 	var line;
-  for(var i=11; i< teamInfo.PlayerLineUp.MatchPlayer.length;i++)
+  for(var i=0; i< sortedList.length;i++)
   {
 	line='<div class="player_div">'+
 	'<div class="number_div">'+
-		'<span class="number_span" id="away_sust_number1">'+teamInfo.PlayerLineUp.MatchPlayer[i]["@attributes"].ShirtNumber+'</span>'+
+		'<span class="number_span" id="away_sust_number1">'+sortedList[i]["@attributes"].ShirtNumber+'</span>'+
 	'</div>'+
 	'<div class="name_div">'+
-		'<span class="name_span" id="away_sust_name1">'+getName(teamInfo,i)+'</span>'+
+		'<span class="name_span" id="away_sust_name1">'+getName(teamInfo,sortedList[i]["@attributes"].PlayerRef)+'</span>'+
 	'</div>'+
 	'</div>';
 	result=result+line;
@@ -363,13 +378,13 @@ function populateSubHtml(name)
  div.innerHTML = result;
 }
 
-function getName(selectedTeamInfo,id)
+function getName(selectedTeamInfo,player_id)
 {
 	
 	//var lineup=list.PlayerLineUp.MatchPlayer;
 	var result="";
-	var player=selectedTeamInfo.PlayerLineUp.MatchPlayer[id];
-	var player_id=player["@attributes"].PlayerRef;
+	//var player=selectedTeamInfo.PlayerLineUp.MatchPlayer[id];
+	//var player_id=player["@attributes"].PlayerRef;
 	var name=getPlayerName(playerlist,player_id);
 	result=name+checkSubstitutionsIn(player_id) +checkCards(player_id)+checkGoals(player_id)+checkSubstitutions(player_id);
 	return result;
@@ -386,7 +401,7 @@ function getPlayerName(p_list,id)
     var player=p_list[i];
     if(id==player["@attributes"].uID)
     {
-		console.log("Izena: "+player.PersonName.Known);
+		
       if(player.PersonName.hasOwnProperty('Known'))
         name=player.PersonName.Known;
       else
