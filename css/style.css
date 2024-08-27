@@ -148,7 +148,7 @@ body._lock {
 	align-items: center;
 	justify-content: space-between;
 	min-height: 70px;
-	background-image: url("../Material/RAYO.jpg");
+	background-image: url("../Material/CABECERA\ ALAVES.jpg");
 }
 .header__logo {
 	border-radius: 50%;
@@ -636,7 +636,7 @@ body._touch .menu__list > li._active .menu__arrow {
 		top: 0;
 		left: 0;
 		height: 70px;
-		background-image: url('../Material/RAYO.jpg');
+		background-image: url('../Material/CABECERA\ ALAVES.jpg');
 		
 		background-repeat: no-repeat;
 		background-size: 80%;
