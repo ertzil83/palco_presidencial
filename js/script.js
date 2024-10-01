@@ -79,7 +79,7 @@ if (menuLinks.length > 0) {
 				iconMenu.classList.remove('_active');
 				menuBody.classList.remove('_active');
 
-				// auto close sub-menu
+				// auto close 
 				if (
 					menuBody.dataset.sub_menu_auto_close &&
 					document.body.classList.contains('_touch')
