@@ -693,7 +693,7 @@ function transEus(value)
 	document.getElementById("menu_gastro").innerHTML="Gastronomia";
 	gastro_title="Gastronomia"
 	document.getElementById("menu_idioma").innerHTML="Hizkuntza";
-	document.getElementById("menu_boletin").innerHTML="Aldizkaria";
+	//document.getElementById("menu_boletin").innerHTML="Aldizkaria";
 	document.getElementById("menu_info").innerHTML="Informazioa";
 	document.getElementById("menu_contact").innerHTML="Kontaktua";
 	if(page==="Gastro")
@@ -738,7 +738,7 @@ function transCas()
 	document.getElementById("menu_gastro").innerHTML="Gastronomía";
 	gastro_title="Gastronomía"
 	document.getElementById("menu_idioma").innerHTML="Idioma";
-	document.getElementById("menu_boletin").innerHTML="Boletín";
+	//document.getElementById("menu_boletin").innerHTML="Boletín";
 	document.getElementById("menu_info").innerHTML="Información";
 	document.getElementById("menu_contact").innerHTML="Contacto";
 	if(page==="Gastro")
