@@ -713,7 +713,7 @@ function transEus(value)
 	document.getElementById("meal11").textContent="Kardu konfitatua eta pistatxoa";
 	document.getElementById("meal12").textContent="Lepapea potxekin";
 	document.getElementById("meal13").textContent="Bakailaoa holandar saltsarekin";
-	document.getElementById("meal14").textContent="Basatxerri haragi-bola tomateztatuak";
+	document.getElementById("meal14").textContent="Txarri-Txiki haragi-bola tomateztatuak";
 	document.getElementById("meal15").textContent="Krema eta sagar errearen hostorea";
 	document.getElementById("meal16").textContent="Mamia, eztia eta intxaurrak";
 	document.getElementById("meal17").textContent="5 motatako gaztak";
@@ -758,7 +758,7 @@ function transCas()
 	document.getElementById("meal11").textContent="Cardo confitado y pistacho";
 	document.getElementById("meal12").textContent="Papada con pochas";
 	document.getElementById("meal13").textContent="Bacalao con salsa Holandesa";
-	document.getElementById("meal14").textContent="Albóndigas Basatxerri atomatadas";
+	document.getElementById("meal14").textContent="Albóndigas Txarri-Txiki atomatadas";
 	document.getElementById("meal15").textContent="Hojaldre de crema y manzana asada";
 	document.getElementById("meal16").textContent="Cuajada, miel y nueces";
 	document.getElementById("meal17").textContent="Queso 5 variedades";
