@@ -254,11 +254,11 @@ function updateMatchInfoFromOpta()
   xhr.addEventListener("readystatechange", function() {
     if(this.readyState === 4) {
       stats= JSON.parse(this.responseText);
-      
-      home_playerlist=stats.SoccerFeed.SoccerDocument.Team[0].Player;
-      home_teamInfo=stats.SoccerFeed.SoccerDocument.MatchData.TeamData[0];
-      away_playerlist=stats.SoccerFeed.SoccerDocument.Team[1].Player;
-      away_teamInfo=stats.SoccerFeed.SoccerDocument.MatchData.TeamData[1];
+      console.log(stats);
+      home_playerlist=stats.SoccerFeed.SoccerDocument[0].Team[0].Player;
+      home_teamInfo=stats.SoccerFeed.SoccerDocument[0].MatchData.TeamData[0];
+      away_playerlist=stats.SoccerFeed.SoccerDocument[0].Team[1].Player;
+      away_teamInfo=stats.SoccerFeed.SoccerDocument[0].MatchData.TeamData[1];
       teamInfo=home_teamInfo;
       playerlist=home_playerlist;
 	  sub_array=new Array();
